@@ -40,10 +40,12 @@ namespace customDamageType
                 {
                     if (ev.Target.Items.Where(x => x.Type.IsArmor()).Count() == 0)
                     {
-                        ev.Damage = damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier);
+                        if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1f)
+                            ev.Damage = damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier);
                     }else
                     {
-                        ev.Damage = damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier);
+                        if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1f)
+                            ev.Damage = damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier);
                     }
                 }
             }
@@ -53,7 +55,8 @@ namespace customDamageType
         {
             if(gunDamageTypes.Contains(ev.Handler.Type))
                 return;
-            
+            if(cfg.DamageValues.TryGetValue(ev.Handler.Type, out var amount) || amount != -1f)
+                ev.Amount = amount;
         }
     }
 }
