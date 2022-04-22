@@ -36,8 +36,6 @@ namespace customDamageType
         {
             if (ev.Hitbox == null || ev.Shooter == null)
                 return;
-            if(ev.Damage == 0f)
-                return;
 
             if (ev.Shooter.CurrentItem is Firearm firearm)
             {
