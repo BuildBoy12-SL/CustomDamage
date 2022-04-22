@@ -34,7 +34,7 @@ namespace customDamageType
 
         public void OnShot(ShotEventArgs ev)
         {
-            if (ev.Hitbox == null || ev.Shooter == null)
+            if (ev.Hitbox == null || ev.Shooter == null || ev.Target == null)
                 return;
             if(ev.Damage < 2)
                 return;
@@ -48,16 +48,33 @@ namespace customDamageType
                         if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1f)
                         {
                             ev.Damage = 1;
-                            if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier)-1 > 0)
-                                ev.Target.Hurt(ev.Shooter, damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier)-1, value);
+                            if (damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 1 > 0)
+                            {
+                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
+                                {
+                                    ev.Target.Health -= damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 1;
+                                }else
+                                {
+                                    ev.Target.Health -= damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 1;
+                                }
+                            }
                         }
                     }else
                     {
                         if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1f)
                         {
                             ev.Damage = 1;
-                            if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) -1 > 0) 
-                                ev.Target.Hurt(ev.Shooter, damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier), value);
+                            if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) -1 > 0)
+                            {
+                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
+                                {
+                                    ev.Target.Health -= ev.Target.Health - 1;
+                                }else
+                                {
+                                    ev.Target.Health -= damageValue.getValue(
+                                        ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier);
+                                }
+                            }
                         }
                     }
                 }
