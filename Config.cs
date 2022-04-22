@@ -11,7 +11,7 @@ namespace customDamageType
         public bool IsEnabled { get; set; } = true;
 
         [Description("The non gun damage custom values, set to -1 for default")]
-        public Dictionary<DamageType, float> DamageValues = new Dictionary<DamageType, float>()
+        public Dictionary<DamageType, float> DamageValues { get; set; } = new Dictionary<DamageType, float>()
         {
             {DamageType.Asphyxiation, -1f},
             {DamageType.Bleeding, -1f},
@@ -35,7 +35,7 @@ namespace customDamageType
         };
             
         [Description("The custom damage values of guns, set to -1 for default")]
-        public Dictionary<DamageType, DamageTypeConfig> GunDamageValues = new Dictionary<DamageType, DamageTypeConfig>()
+        public Dictionary<DamageType, DamageTypeConfig> GunDamageValues { get; set; } = new Dictionary<DamageType, DamageTypeConfig>()
         {
             {
                 DamageType.Com15, new DamageTypeConfig()
