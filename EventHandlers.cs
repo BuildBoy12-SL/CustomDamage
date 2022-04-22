@@ -15,16 +15,16 @@ namespace customDamageType
         public Dictionary<ItemType, DamageType> ItemDamageTypeMapping = new Dictionary<ItemType, DamageType>()
         {
             {ItemType.GunCrossvec, DamageType.Crossvec},
-            {ItemType.GunLogicer, DamageType.Crossvec},
-            {ItemType.GunRevolver, DamageType.Crossvec},
-            {ItemType.GunShotgun, DamageType.Crossvec},
-            {ItemType.GunAK, DamageType.Crossvec},
-            {ItemType.GunCOM15, DamageType.Crossvec},
-            {ItemType.GunCOM18, DamageType.Crossvec},
-            {ItemType.GunE11SR, DamageType.Crossvec},
-            {ItemType.GunFSP9, DamageType.Crossvec},
-            {ItemType.MicroHID, DamageType.Crossvec},
-            {ItemType.ParticleDisruptor, DamageType.Crossvec},
+            {ItemType.GunLogicer, DamageType.Logicer},
+            {ItemType.GunRevolver, DamageType.Revolver},
+            {ItemType.GunShotgun, DamageType.Shotgun},
+            {ItemType.GunAK, DamageType.AK},
+            {ItemType.GunCOM15, DamageType.Com15},
+            {ItemType.GunCOM18, DamageType.Com18},
+            {ItemType.GunE11SR, DamageType.E11Sr},
+            {ItemType.GunFSP9, DamageType.Fsp9},
+            {ItemType.MicroHID, DamageType.MicroHid},
+            {ItemType.ParticleDisruptor, DamageType.ParticleDisruptor},
         };
 
         public EventHandlers(Plugin plugin)
@@ -34,6 +34,9 @@ namespace customDamageType
 
         public void OnShot(ShotEventArgs ev)
         {
+            if (ev.Hitbox == null || ev.Shooter == null)
+                return;
+
             if (ev.Shooter.CurrentItem is Firearm firearm)
             {
                 if (ItemDamageTypeMapping.TryGetValue(firearm.Type, out var value) && cfg.GunDamageValues.TryGetValue(value, out var damageValue))
