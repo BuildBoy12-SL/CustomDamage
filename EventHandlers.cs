@@ -45,48 +45,40 @@ namespace customDamageType
                 {
                     if (ev.Target.Items.Where(x => x.Type.IsArmor()).Count() == 0)
                     {
-                        if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1f)
+                        if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1)
                         {
-                            ev.Damage = 0.1f;
-                            if (damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) > 0.1f)
+                            ev.Damage = 1;
+                            if (damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) > 1);
                             {
-                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 0.1f > ev.Target.Health)
+                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
                                 {
-                                    ev.Target.Health -= ev.Target.Health - 0.1f;
+                                    ev.Target.Health -= ev.Target.Health - 1;
                                 }else
                                 {
-                                    ev.Target.Health -= damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 0.1f;
+                                    ev.Target.Health -= damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 1;
                                 }
                             }
                         }
                     }else
                     {
-                        if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1f)
+                        if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1)
                         {
-                            ev.Damage = 0.1f;
-                            if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) > 0.1f)
+                            ev.Damage = 1;
+                            if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) > 1)
                             {
-                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 0.1f > ev.Target.Health)
+                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
                                 {
-                                    ev.Target.Health -= ev.Target.Health - 0.1f;
+                                    ev.Target.Health -= ev.Target.Health - 1;
                                 }else
                                 {
                                     ev.Target.Health -= damageValue.getValue(
-                                        ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) - 0.1f;
+                                        ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) - 1;
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-        
-        public void OnHurting(HurtingEventArgs ev)
-        {
-            if(gunDamageTypes.Contains(ev.Handler.Type))
-                return;
-            if(cfg.DamageValues.TryGetValue(ev.Handler.Type, out var amount) || amount != -1f)
-                ev.Amount = amount;
         }
     }
 }

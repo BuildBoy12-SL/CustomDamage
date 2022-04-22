@@ -16,7 +16,6 @@ namespace customDamageType
         public override void OnEnabled()
         {
             EventHandler = new EventHandlers(this);
-            Player.Hurting += EventHandler.OnHurting;
             Player.Shot += EventHandler.OnShot;
             
             base.OnEnabled();
@@ -24,7 +23,6 @@ namespace customDamageType
 
         public override void OnDisabled()
         {
-            Player.Hurting -= EventHandler.OnHurting;
             Player.Shot -= EventHandler.OnShot;
             EventHandler = null;
             
