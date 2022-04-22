@@ -52,7 +52,8 @@ namespace customDamageType
                             {
                                 if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
                                 {
-                                    ev.Target.Health = 1;
+                                    if(ev.Target.Health > 1)
+                                        ev.Target.Health = 1;
                                 }else
                                 {
                                     ev.Target.Health -= damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 1;
@@ -68,7 +69,8 @@ namespace customDamageType
                             {
                                 if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
                                 {
-                                    ev.Target.Health = 1;
+                                    if(ev.Target.Health > 1)
+                                        ev.Target.Health = 1;
                                 }else
                                 {
                                     ev.Target.Health -= damageValue.getValue(
