@@ -36,6 +36,8 @@ namespace customDamageType
         {
             if (ev.Hitbox == null || ev.Shooter == null)
                 return;
+            if(ev.Damage == 0f)
+                return;
 
             if (ev.Shooter.CurrentItem is Firearm firearm)
             {
@@ -44,11 +46,19 @@ namespace customDamageType
                     if (ev.Target.Items.Where(x => x.Type.IsArmor()).Count() == 0)
                     {
                         if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1f)
-                            ev.Damage = damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier);
+                        {
+                            ev.Damage = 0;
+                            ev.Target.Hurt(ev.Shooter, damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier), value);
+                        }
                     }else
                     {
                         if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1f)
-                            ev.Damage = damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier);
+                        {
+                            {
+                                ev.Damage = 0;
+                                ev.Target.Hurt(ev.Shooter, damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier), value);
+                            }
+                        }
                     }
                 }
             }
