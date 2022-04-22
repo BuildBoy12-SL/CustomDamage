@@ -47,7 +47,7 @@ namespace customDamageType
                     {
                         if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1f)
                         {
-                            ev.Damage = 0;
+                            ev.CanHurt = false;
                             ev.Target.Hurt(ev.Shooter, damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier), value);
                         }
                     }else
@@ -55,8 +55,8 @@ namespace customDamageType
                         if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1f)
                         {
                             {
-                                ev.Damage = 0;
-                                ev.Target.Hurt(ev.Shooter, damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier), value);
+                                ev.CanHurt = false;
+                                ev.Target.Hurt(ev.Shooter, damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier), value);
                             }
                         }
                     }
