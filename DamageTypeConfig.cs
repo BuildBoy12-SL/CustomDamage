@@ -2,10 +2,10 @@
 {
     public class DamageTypeConfig
     {
-        public hitBoxValues UnArmoured;
-        public hitBoxValues LightArmour;
-        public hitBoxValues CombatArmour;
-        public hitBoxValues HeavyArmour;
+        public hitBoxValues UnArmoured{ get; set; }
+        public hitBoxValues LightArmour{ get; set; }
+        public hitBoxValues CombatArmour{ get; set; }
+        public hitBoxValues HeavyArmour{ get; set; }
 
         public float getValue(ItemType? armour, HitboxType type)
         {
@@ -26,9 +26,9 @@
 
     public class hitBoxValues
     {
-        public float Body;
-        public float Limb;
-        public float Head;
+        public float Body{ get; set; }
+        public float Limb{ get; set; }
+        public float Head{ get; set; }
         
         public float getValue(HitboxType type)
         {

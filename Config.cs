@@ -29,12 +29,11 @@ namespace customDamageType
             {DamageType.Scp207, -1f},
             {DamageType.Scp0492, -1f},
             {DamageType.Scp939, -1f},
-            {DamageType.Tesla, -1f},
             {DamageType.Warhead, -1f},
             {DamageType.SeveredHands, -1f},
         };
             
-        [Description("The custom damage values of guns, set to -1 for default")]
+        [Description("The custom damage values of the Com15, set to -1 for default")]
         public Dictionary<DamageType, DamageTypeConfig> GunDamageValues { get; set; } = new Dictionary<DamageType, DamageTypeConfig>()
         {
             {
@@ -42,27 +41,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 19.6f,
-                        Limb = 13.72f,
-                        Head = 68.6f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 13.7f,
-                        Limb = 13.72f,
-                        Head = 53.2f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 10.8f,
-                        Limb = 13.72f,
-                        Head = 27.3f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 7.8f,
-                        Limb = 13.72f,
-                        Head = 27.3f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -71,27 +70,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -100,27 +99,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -129,27 +128,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -158,27 +157,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -187,27 +186,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -216,27 +215,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -245,27 +244,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -274,27 +273,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -303,27 +302,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
@@ -332,27 +331,27 @@ namespace customDamageType
                 {
                     UnArmoured = new hitBoxValues()
                     {
-                        Body = 20.2f,
-                        Limb = 14.14f,
-                        Head = 70.7f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     LightArmour = new hitBoxValues()
                     {
-                        Body = 15.8f,
-                        Limb = 14.14f,
-                        Head = 59.15f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     CombatArmour = new hitBoxValues()
                     {
-                        Body = 13.5f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                     HeavyArmour = new hitBoxValues()
                     {
-                        Body = 11.3f,
-                        Limb = 14.14f,
-                        Head = 39.55f,
+                        Body = -1f,
+                        Limb = -1f,
+                        Head = -1f,
                     },
                 }
             },
