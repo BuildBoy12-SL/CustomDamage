@@ -45,17 +45,17 @@ namespace customDamageType
                     {
                         if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1f)
                         {
-                            ev.CanHurt = false;
-                            ev.Target.Hurt(ev.Shooter, damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier), value);
+                            ev.Damage = 1;
+                            if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier)-1 > 0)
+                                ev.Target.Hurt(ev.Shooter, damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier)-1, value);
                         }
                     }else
                     {
                         if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1f)
                         {
-                            {
-                                ev.CanHurt = false;
+                            ev.Damage = 1;
+                            if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) -1 > 0) 
                                 ev.Target.Hurt(ev.Shooter, damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier), value);
-                            }
                         }
                     }
                 }
