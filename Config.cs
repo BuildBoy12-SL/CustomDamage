@@ -32,8 +32,8 @@ namespace customDamageType
             {DamageType.Warhead, -1f},
             {DamageType.SeveredHands, -1f},
         };
-            
-        [Description("The custom damage values of the Com15, set to -1 for default")]
+
+        [Description("The custom damage values of guns, set to -1 for default")]
         public Dictionary<DamageType, DamageTypeConfig> GunDamageValues { get; set; } = new Dictionary<DamageType, DamageTypeConfig>()
         {
             {

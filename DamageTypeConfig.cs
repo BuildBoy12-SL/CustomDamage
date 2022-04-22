@@ -41,7 +41,6 @@
                 case HitboxType.Headshot:
                     return Head;
             }
-
             return 0f;
         }
     }
