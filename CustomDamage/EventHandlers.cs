@@ -12,6 +12,7 @@ namespace CustomDamage
     using Exiled.API.Extensions;
     using Exiled.API.Features.Items;
     using Exiled.Events.EventArgs;
+    using PlayerStatsSystem;
 
     /// <summary>
     /// Handles events derived from <see cref="Exiled.Events.Handlers"/>.
@@ -42,8 +43,9 @@ namespace CustomDamage
             float damage = damageConfig.GetDamage(ev.Target, ev.Hitbox._dmgMultiplier);
             if (damage > 0)
             {
-                ev.CanHurt = false;
-                ev.Target.Hurt(ev.Shooter, damage, value);
+                // This is stupid and I'm mad about it
+                ev.Damage = 1;
+                ev.Target.Hurt(new UniversalDamageHandler(damage - 1f, DeathTranslations.BulletWounds));
             }
         }
 
