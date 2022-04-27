@@ -52,11 +52,11 @@ namespace CustomDamage
                         continue;
 
                     string path = Path.Combine(Folder, damageType + ".yml");
-                    DamageTypeConfig value = File.Exists(path) ?
-                        Loader.Deserializer.Deserialize<DamageTypeConfig>(File.ReadAllText(path))
+                    DamageTypeConfig value = File.Exists(path)
+                        ? Loader.Deserializer.Deserialize<DamageTypeConfig>(File.ReadAllText(path))
                         : new DamageTypeConfig();
 
-                    DamageValues[damageType] = value;
+                    DamageValues.Add(damageType, value);
                     File.WriteAllText(path, Loader.Serializer.Serialize(value));
                 }
                 catch (Exception e)
