@@ -7,7 +7,7 @@
 
 namespace CustomDamage
 {
-    using System.Linq;
+    using CustomDamage.Configs;
     using Exiled.API.Enums;
     using Exiled.API.Extensions;
     using Exiled.API.Features.Items;
@@ -29,17 +29,17 @@ namespace CustomDamage
         /// <inheritdoc cref="Exiled.Events.Handlers.Player.OnShot(ShotEventArgs)"/>
         public void OnShot(ShotEventArgs ev)
         {
-            if (ev.Hitbox == null || ev.Shooter == null || ev.Target == null)
+            if (ev.Shooter is null || ev.Target is null)
                 return;
 
             if (ev.Shooter.CurrentItem is not Firearm firearm)
                 return;
 
             if (!DamageTypeExtensions.ItemConversion.TryGetValue(firearm.Type, out DamageType value) ||
-                !plugin.Config.DamageValues.TryGetValue(value, out DamageTypeConfig damageValue))
+                !plugin.Config.DamageValues.TryGetValue(value, out DamageTypeConfig damageConfig))
                 return;
 
-            float damage = GetDamage(damageValue, ev.Hitbox._dmgMultiplier, ev.Target.Items.FirstOrDefault(item => item.Type.IsArmor()));
+            float damage = damageConfig.GetDamage(ev.Target, ev.Hitbox._dmgMultiplier);
             if (damage > 0)
             {
                 ev.CanHurt = false;
@@ -49,13 +49,5 @@ namespace CustomDamage
 
         /// <inheritdoc cref="Exiled.Events.Handlers.Server.OnReloadedConfigs()"/>
         public void OnReloadedConfigs() => plugin.Config.Reload();
-
-        private static float GetDamage(DamageTypeConfig damageTypeConfig, HitboxType hitboxType, Item armor)
-        {
-            if (armor is null)
-                return damageTypeConfig.UnArmoured.GetValue(hitboxType);
-
-            return damageTypeConfig.GetValue(armor.Type, hitboxType);
-        }
     }
 }

@@ -17,17 +17,20 @@ namespace CustomDamage
     {
         private EventHandlers eventHandlers;
 
-        /// <inheritdoc />
-        public override string Name => "CustomDamage";
-
         /// <inheritdoc/>
         public override string Author => "Build";
 
         /// <inheritdoc />
-        public override Version Version { get; } = new(1, 0, 0);
+        public override string Name => "CustomDamage";
+
+        /// <inheritdoc />
+        public override string Prefix => "CustomDamage";
 
         /// <inheritdoc />
         public override Version RequiredExiledVersion { get; } = new(5, 1, 3);
+
+        /// <inheritdoc />
+        public override Version Version { get; } = new(1, 0, 0);
 
         /// <inheritdoc />
         public override void OnEnabled()

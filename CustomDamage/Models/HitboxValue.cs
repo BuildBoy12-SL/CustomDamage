@@ -34,17 +34,13 @@ namespace CustomDamage.Models
         /// <returns>The damage value to use.</returns>
         public float GetValue(HitboxType hitbox)
         {
-            switch (hitbox)
+            return hitbox switch
             {
-                case HitboxType.Body:
-                    return Body;
-                case HitboxType.Limb:
-                    return Limb;
-                case HitboxType.Headshot:
-                    return Head;
-            }
-
-            return 0f;
+                HitboxType.Body => Body,
+                HitboxType.Limb => Limb,
+                HitboxType.Headshot => Head,
+                _ => 0f
+            };
         }
     }
 }

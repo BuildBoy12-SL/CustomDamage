@@ -11,6 +11,7 @@ namespace CustomDamage
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
+    using CustomDamage.Configs;
     using Exiled.API.Enums;
     using Exiled.API.Extensions;
     using Exiled.API.Features;
@@ -47,11 +48,11 @@ namespace CustomDamage
             DamageValues.Clear();
             foreach (DamageType damageType in Enum.GetValues(typeof(DamageType)))
             {
+                if (!damageType.IsWeapon())
+                    continue;
+
                 try
                 {
-                    if (!damageType.IsWeapon())
-                        continue;
-
                     string path = Path.Combine(Folder, damageType + ".yml");
                     DamageTypeConfig value = File.Exists(path)
                         ? Loader.Deserializer.Deserialize<DamageTypeConfig>(File.ReadAllText(path))

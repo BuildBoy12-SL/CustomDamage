@@ -5,9 +5,11 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace CustomDamage
+namespace CustomDamage.Configs
 {
     using CustomDamage.Models;
+    using Exiled.API.Features;
+    using InventorySystem.Items.Armor;
 
     /// <summary>
     /// Handles the <see cref="HitboxValue"/>s for each armor type.
@@ -17,42 +19,41 @@ namespace CustomDamage
         /// <summary>
         /// Gets or sets the damage values for unarmored targets.
         /// </summary>
-        public HitboxValue UnArmoured { get; set; } = new();
+        public HitboxValue Unarmored { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the damage values for targets with light armor.
         /// </summary>
-        public HitboxValue LightArmour { get; set; } = new();
+        public HitboxValue LightArmor { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the damage values for targets with combat armor.
         /// </summary>
-        public HitboxValue CombatArmour { get; set; } = new();
+        public HitboxValue CombatArmor { get; set; } = new();
 
         /// <summary>
         /// Gets or sets the damage values for targets with heavy armor.
         /// </summary>
-        public HitboxValue HeavyArmour { get; set; } = new();
+        public HitboxValue HeavyArmor { get; set; } = new();
 
         /// <summary>
         /// Gets the damage value for the corresponding armor type and hitbox.
         /// </summary>
-        /// <param name="armor">The armor type.</param>
+        /// <param name="target">The player to hurt.</param>
         /// <param name="hitbox">The hitbox.</param>
         /// <returns>The damage value to use.</returns>
-        public float GetValue(ItemType armor, HitboxType hitbox)
+        public float GetDamage(Player target, HitboxType hitbox)
         {
-            switch (armor)
+            if (!target.Inventory.TryGetBodyArmor(out BodyArmor armor))
+                return Unarmored.GetValue(hitbox);
+
+            return armor.ItemTypeId switch
             {
-                case ItemType.ArmorLight:
-                    return LightArmour.GetValue(hitbox);
-                case ItemType.ArmorCombat:
-                    return CombatArmour.GetValue(hitbox);
-                case ItemType.ArmorHeavy:
-                    return HeavyArmour.GetValue(hitbox);
-                default:
-                    return UnArmoured.GetValue(hitbox);
-            }
+                ItemType.ArmorLight => LightArmor.GetValue(hitbox),
+                ItemType.ArmorCombat => CombatArmor.GetValue(hitbox),
+                ItemType.ArmorHeavy => HeavyArmor.GetValue(hitbox),
+                _ => Unarmored.GetValue(hitbox)
+            };
         }
     }
 }
