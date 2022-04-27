@@ -44,6 +44,7 @@ namespace CustomDamage
             if (!Directory.Exists(Folder))
                 Directory.CreateDirectory(Folder);
 
+            DamageValues.Clear();
             foreach (DamageType damageType in Enum.GetValues(typeof(DamageType)))
             {
                 try
