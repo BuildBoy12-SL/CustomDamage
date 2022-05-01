@@ -2,9 +2,11 @@
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
+using Exiled.API.Features;
 using Exiled.API.Features.Items;
-using Exiled.Events;
 using Exiled.Events.EventArgs;
+using InventorySystem.Items.Firearms.BasicMessages;
+using PlayerStatsSystem;
 
 namespace customDamageType
 {
@@ -36,49 +38,44 @@ namespace customDamageType
         {
             if (ev.Hitbox == null || ev.Shooter == null || ev.Target == null)
                 return;
-            if (ev.Damage < 2)
+            if(!ev.CanHurt || (!Server.FriendlyFire && ev.Shooter.Role.Side == ev.Target.Role.Side))
                 return;
-
+            float damage = 0;
             if (ev.Shooter.CurrentItem is Firearm firearm)
             {
                 if (ItemDamageTypeMapping.TryGetValue(firearm.Type, out var value) && cfg.GunDamageValues.TryGetValue(value, out var damageValue))
                 {
-                    if (ev.Target.Items.Where(x => x.Type.IsArmor()).Count() == 0)
+                    if (!ev.Target.Items.Any(x => x.Type.IsArmor()))
                     {
                         if(damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) != -1)
                         {
-                            ev.Damage = 1;
                             if (damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) > 1);
                             {
-                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
-                                {
-                                    if(ev.Target.Health > 1)
-                                        ev.Target.Health = 1;
-                                }else
-                                {
-                                    ev.Target.Health -= damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 1;
-                                }
+                                ev.Damage = 0;
+                                damage = damageValue.UnArmoured.getValue(ev.Hitbox._dmgMultiplier) - 1;
                             }
                         }
                     }else
                     {
                         if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) != -1)
                         {
-                            ev.Damage = 1;
                             if(damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) > 1)
                             {
-                                if (damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) + 1 > ev.Target.Health)
-                                {
-                                    if(ev.Target.Health > 1)
-                                        ev.Target.Health = 1;
-                                }else
-                                {
-                                    ev.Target.Health -= damageValue.getValue(
-                                        ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) - 1;
-                                }
+                                ev.Damage = 0;
+                                damage = damageValue.getValue(ev.Target.Items.First(x => x.Type.IsArmor()).Type, ev.Hitbox._dmgMultiplier) - 1;
                             }
                         }
                     }
+                }
+                if(damage != -1)
+                {
+                    if (ev.Target.Health - damage <= 0)
+                        ev.Target.ReferenceHub.playerStats.KillPlayer(new FirearmDamageHandler(firearm.Base, damage, false));
+                    else
+                        ev.Target.Health -= damage;
+                    Hitmarker.SendHitmarker(ev.Shooter.Connection, 1f);
+                    foreach (ReferenceHub spectatingPlayer in ev.Shooter.ReferenceHub.spectatorManager.ServerCurrentSpectatingPlayers)
+                        spectatingPlayer.networkIdentity.connectionToClient.Send(new GunHitMessage(false, damage, ev.Shooter.ReferenceHub.transform.eulerAngles));
                 }
             }
         }
