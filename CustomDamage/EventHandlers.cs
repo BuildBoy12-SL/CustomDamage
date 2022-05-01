@@ -43,9 +43,12 @@ namespace CustomDamage
             float damage = damageConfig.GetDamage(ev.Target, ev.Hitbox._dmgMultiplier);
             if (damage > 0)
             {
-                // This is stupid and I'm mad about it
+                // This is stupid and we are mad about it
                 ev.Damage = 1;
-                ev.Target.Hurt(new UniversalDamageHandler(damage - 1f, DeathTranslations.BulletWounds));
+                if(ev.Target.Health - damage - 1 > 0)
+                    ev.Target.Hurt(new FirearmDamageHandler(firearm.Base, damage - 1f));
+                else
+                    ev.Target.ReferenceHub.playerStats.KillPlayer(new FirearmDamageHandler(firearm.Base, damage-1, false));
             }
         }
 
